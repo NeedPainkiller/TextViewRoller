@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 item1.startRolling(2,11);
+                //startRolling(value, rollCount)
                 item2.startRolling(3,22);
                 item3.startRolling(4,33);
                 item4.startRolling(1,44);
