@@ -169,12 +169,7 @@ public class RollingItem extends FrameLayout implements AnimationListener {
 
 
     @Override public void onAnimationEnd(Animation animation) {
-        postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                doNextMove();
-            }
-        }, 1);
+        postDelayed(this::doNextMove, 1);
     }
 
 

@@ -1,15 +1,28 @@
 apply plugin: 'com.android.application'
+//apply plugin: 'com.android.library'
+apply plugin: 'com.jakewharton.hugo'
+apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.0"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
+
+    compileOptions {
+        encoding = 'UTF-8'
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
     defaultConfig {
         applicationId "com.rainbow.kam.textviewroller"
         minSdkVersion 21
-        targetSdkVersion 24
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -17,10 +30,68 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+    defaultConfig {
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ['dart.henson.package': 'com.orca.kam.rxpermission']
+            }
+        }
+    }
+    return void
+}
+
+repositories {
+    maven { url "https://jitpack.io" }
+    mavenCentral()
 }
 
 dependencies {
+    def ext = rootProject.ext;
+    Map<String, String> Test = ext.TestDependencies;
+    Map<String, String> Injection = ext.InjectionDependencies;
+    Map<String, String> Google = ext.GoogleDependencies;
+    Map<String, String> Rx = ext.RxDependencies;
+    Map<String, String> Ui = ext.UiDependencies;
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:24.0.0'
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testCompile Test.JUnit
+
+    compile Injection.Dart
+    provided Injection.Dart_Provide
+    compile Injection.Henson
+    provided Injection.Henson_Provide
+
+    compile Google.Google_SupportV4
+    compile Google.Google_AppCompatV7
+    compile Google.Guava
+
+    compile Rx.RxJava2
+    compile Rx.RxAndroid2
+
+    compile Ui.MaterialDialogs
+
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
+
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+
+        Map<String, String> ClassPaths = rootProject.ext.ClassPaths;
+        classpath ClassPaths.Gradle
+        classpath ClassPaths.Hugo
+        classpath ClassPaths.Retrolambda
+        classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+

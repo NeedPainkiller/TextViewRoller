@@ -1,0 +1,109 @@
+ext {
+    V_GRADLE = "2.2.3"
+    V_APT = "1.8"
+
+    BasicDependencies = [
+            APT     : "com.neenbedankt.gradle.plugins:android-apt:$V_APT",
+            Gradle  : "com.android.tools.build:gradle:$V_GRADLE",
+            FileTree: fileTree(dir: 'libs', include: ['*.jar']),
+    ]
+
+    V_HUGO = "1.2.1"
+    V_RETROLAMBDA = "3.4.0"
+    V_REALM = "2.2.0"
+    ClassPaths = [
+            Gradle     : "com.android.tools.build:gradle:$V_GRADLE",
+            Hugo       : "com.jakewharton.hugo:hugo-plugin:$V_HUGO",
+            Retrolambda: "me.tatarka:gradle-retrolambda:$V_RETROLAMBDA",
+            APT        : "com.neenbedankt.gradle.plugins:android-apt:$V_APT",
+            RealmJava  : "io.realm:realm-gradle-plugin:$V_REALM"
+    ]
+
+    V_310 = "1.0.4"
+    V_STETHO = "1.4.2"
+    V_LeakCanary = "1.5"
+    ToolsDependencies = [
+            Hugo             : "com.jakewharton.hugo:hugo-plugin:$V_HUGO",
+            Retrolambda      : "me.tatarka:gradle-retrolambda:$V_RETROLAMBDA",
+            Stetho           : "com.facebook.stetho:stetho:$V_STETHO",
+            StethoOkHttp     : "com.facebook.stetho:stetho-okhttp3:$V_STETHO",
+            jsr310           : "com.jakewharton.threetenabp:threetenabp:$V_310",
+            LeakCanaryDebug  : "com.squareup.leakcanary:leakcanary-android:$V_LeakCanary",
+            LeakCanaryRelease: "com.squareup.leakcanary:leakcanary-android-no-op:1.5:$V_LeakCanary",
+            LeakCanaryTest   : "com.squareup.leakcanary:leakcanary-android-no-op:1.5:$V_LeakCanary"
+
+    ]
+
+    V_GOOGLE = "25.2.0"
+    V_GUAVA = "19.0"
+    GoogleDependencies = [
+            Google_SupportV4   : "com.android.support:support-v4:$V_GOOGLE",
+            Google_AppCompatV7 : "com.android.support:appcompat-v7:$V_GOOGLE",
+            Google_Design      : "com.android.support:design:$V_GOOGLE",
+            Google_CardView    : "com.android.support:cardview-v7:$V_GOOGLE",
+            Google_RecyclerView: "com.android.support:recyclerview-v7:$V_GOOGLE",
+            Google_Annotations : "com.android.support:support-annotations:$V_GOOGLE",
+            Guava              : "com.google.guava:guava:$V_GUAVA"
+    ]
+
+    V_DAGGER = "2.5"
+    V_BUTTER_KNIFE = "8.4.0"
+    V_ANDROID_ANNOTATAIONS = "4.0.0"
+    V_DART_HENSON = "2.0.2"
+    InjectionDependencies = [
+            dagger                : "com.google.dagger:dagger:$V_DAGGER",
+            daggerCompilerApt     : "com.google.dagger:dagger-compiler:$V_DAGGER",
+            ButterKnife           : "com.jakewharton:butterknife:$V_BUTTER_KNIFE",
+            ButterKnifeCompilerApt: "com.jakewharton:butterknife-compiler:$V_BUTTER_KNIFE",
+            AndroidAnnotations    : "org.androidannotations:androidannotations-api:$V_ANDROID_ANNOTATAIONS",
+            AndroidAnnotationsApt : "org.androidannotations:androidannotations:$V_ANDROID_ANNOTATAIONS",
+            Dart                  : "com.f2prateek.dart:dart:$V_DART_HENSON",
+            Dart_Provide          : "com.f2prateek.dart:dart-processor:$V_DART_HENSON",
+            Henson                : "com.f2prateek.dart:henson:$V_DART_HENSON",
+            Henson_Provide        : "com.f2prateek.dart:henson-processor:$V_DART_HENSON",
+    ]
+
+    V_RxJava1 = "1.2.4"
+    V_RxJava2 = "2.0.3"
+    V_RxAndroid = "1.2.1"
+    V_RxAndroid2 = "2.0.1"
+    V_RxLIFECYCLE = "1.0"
+    V_RxBINDING = "1.0.0"
+    RxDependencies = [
+            RxJava                 : "io.reactivex:rxjava:$V_RxJava1",
+            RxJava2                : "io.reactivex.rxjava2:rxjava:$V_RxJava2",
+            RxAndroid              : "io.reactivex:rxandroid:$V_RxAndroid",
+            RxAndroid2             : "io.reactivex.rxjava2:rxandroid:$V_RxAndroid2",
+            Rxlifecycle            : "com.trello:rxlifecycle:$V_RxLIFECYCLE",
+            RxlifecycleComponent   : "com.trello:rxlifecycle-components:$V_RxLIFECYCLE",
+            RxBinding              : "com.jakewharton.rxbinding:rxbinding:$V_RxBINDING",
+            RxBindingSupportV4     : "com.jakewharton.rxbinding:rxbinding-support-v4:$V_RxBINDING",
+            RxBindingAppcompatV7   : "com.jakewharton.rxbinding:rxbinding-appcompat-v7:$V_RxBINDING",
+            RxBindingDesign        : "com.jakewharton.rxbinding:rxbinding-design:$V_RxBINDING",
+            RxBindingRecyclerViewV7: "com.jakewharton.rxbinding:rxbinding-recyclerview-v7:$V_RxBINDING",
+            RxBindingLeanbackV17   : "com.jakewharton.rxbinding:rxbinding-leanback-v17:$V_RxBINDING",
+            RxPreference           : "com.f2prateek.rx.preferences:rx-preferences:1.0.2"
+    ]
+
+    V_RETROFIT = "2.0.0"
+    NetworkDependencies = [
+            retrofit             : "com.squareup.retrofit2:retrofit:$V_RETROFIT",
+            retrofitConverterGson: "com.squareup.retrofit2:converter-gson:$V_RETROFIT",
+            retrofitAdapterRxJava: "com.squareup.retrofit2:adapter-rxjava:$V_RETROFIT",
+            okhttp3Logging       : "com.squareup.okhttp3:logging-interceptor:3.2.0"
+    ]
+    DbDependencies = [
+            RealmJava: "io.realm:realm-gradle-plugin:$V_REALM"
+    ]
+
+    UiDependencies = [
+            MaterialDialogs: "com.afollestad.material-dialogs:commons:0.9.3.0",
+            picasso        : "com.squareup.picasso:picasso:2.5.2"
+    ]
+
+    TestDependencies = [
+            JUnit      : "junit:junit:4.12",
+            mockito    : "org.mockito:mockito-core:2.3.10",
+            robolectric: "org.robolectric:robolectric:3.1.4"
+    ]
+}
