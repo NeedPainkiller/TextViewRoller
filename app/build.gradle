@@ -1,9 +1,6 @@
 apply plugin: 'com.android.application'
 //apply plugin: 'com.android.library'
-apply plugin: 'com.jakewharton.hugo'
 apply plugin: 'me.tatarka.retrolambda'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 25
@@ -51,10 +48,7 @@ repositories {
 dependencies {
     def ext = rootProject.ext;
     Map<String, String> Test = ext.TestDependencies;
-    Map<String, String> Injection = ext.InjectionDependencies;
     Map<String, String> Google = ext.GoogleDependencies;
-    Map<String, String> Rx = ext.RxDependencies;
-    Map<String, String> Ui = ext.UiDependencies;
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -62,21 +56,9 @@ dependencies {
     })
     testCompile Test.JUnit
 
-    compile Injection.Dart
-    provided Injection.Dart_Provide
-    compile Injection.Henson
-    provided Injection.Henson_Provide
-
     compile Google.Google_SupportV4
     compile Google.Google_AppCompatV7
-    compile Google.Guava
 
-    compile Rx.RxJava2
-    compile Rx.RxAndroid2
-
-    compile Ui.MaterialDialogs
-
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 
 buildscript {
@@ -88,10 +70,7 @@ buildscript {
 
         Map<String, String> ClassPaths = rootProject.ext.ClassPaths;
         classpath ClassPaths.Gradle
-        classpath ClassPaths.Hugo
         classpath ClassPaths.Retrolambda
-        classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
